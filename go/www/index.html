@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CTF</title>
+  <link href="css/animations.css" rel="stylesheet" type="text/css">
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
+  <script src="lib/angular/angular-animate.js"></script>
+  <script src="lib/jquery-1.11.0.min.js"></script>
+  <script src="js/script.js"></script>
+  <script type="text/javascript">
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+  </script>
+</head>
+<body ng-app="CTF">
+    <div ng-controller="MainCtrl as main">
+      <ul style="width:100px;display:inline-block;">
+        <li style="width:100px;" ng-repeat="item in main.items">
+          <a href="" id="item_{{item.id}}" ng-click="onClkItem(item)">{{item.name}}</a>
+        </li>
+      </ul>
+      <div class="view-animate-container" style="width:800px;display:inline-block;">
+        <div ng-view class="view-animate"></div>
+      </div>
+  </div>
+</body>
+</html>

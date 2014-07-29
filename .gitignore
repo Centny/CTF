@@ -1,0 +1,12 @@
+
+go/build
+
+go/bin
+
+go/main
+
+go/node_modules
+
+go/www/lib
+
+go/CTF-go.sublime-workspace

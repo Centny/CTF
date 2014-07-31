@@ -7,10 +7,10 @@ import (
 )
 
 func TestList(t *testing.T) {
-	ts := httptest.NewServer(ListBook)
-	fmt.Println(ts.G("/"))
+	// ts := httptest.NewServer(ListBook)
+	// fmt.Println(ts.G("/"))
 
-	ts = httptest.NewServer(ListChapter)
+	ts := httptest.NewServer(ListChapter)
 	fmt.Println(ts.G("?id=%v", 1))
 	fmt.Println(ts.G("?id=%v", 100))
 }

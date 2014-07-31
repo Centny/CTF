@@ -34,7 +34,7 @@ func NewSrvMux(pre string, www string) *routing.SessionMux {
 	//
 	mux.HFunc("^/listBk(\\?.*)?$", ctf.ListBook)
 	mux.HFunc("^/listCh(\\?.*)?$", ctf.ListChapter)
-	mux.HFunc("^/store(\\?.*)?$", ctf.StoreCoverage)
+	// mux.HFunc("^/store(\\?.*)?$", ctf.StoreCoverage)
 	if s_igtest {
 		mux.HFunc("/exit", exit)
 	}

@@ -24,11 +24,11 @@ module.exports = function(config) {
     },
     // the default configuration
     coverageReporter: {
-      type: 'html',
-      dir: "../" + js_b_dir + '/uni/'
+      type: 'json',
+      dir: js_b_dir + '/uni/'
     },
     junitReporter: {
-      outputFile: "../" + js_b_dir + '/junit-test-results.xml',
+      outputFile: js_b_dir + '/junit-test-results.xml',
       suite: ''
     }
   });

@@ -25,7 +25,7 @@ module.exports = function(grunt) {
           cwd: ws_b_dir
         },
         cmd: 'bin/srv.test',
-        args: ["-test.v", "--test.coverprofile=../js/ig.out"]
+        args: ["-test.v", "--test.coverprofile=../go/ig.out"]
       },
       jcr: {
         options: {

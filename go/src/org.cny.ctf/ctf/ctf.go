@@ -2,10 +2,7 @@ package ctf
 
 import (
 	"fmt"
-	"github.com/Centny/Cny4go/log"
 	"github.com/Centny/Cny4go/routing"
-	"github.com/Centny/Cny4go/util"
-	"time"
 )
 
 type Item struct {
@@ -43,21 +40,21 @@ func ListChapter(hs *routing.HTTPSession) routing.HResult {
 	return hs.MsgRes(is)
 }
 
-func StoreCoverage(hs *routing.HTTPSession) routing.HResult {
-	var cover string = ""
-	err := hs.ValidRVal(`
-		cover,R|S,L:0
-		`, &cover)
-	if err != nil {
-		return hs.MsgResE(1, err.Error())
-	}
-	log.I("receiving coverage...")
-	time.Sleep(10 * time.Second)
-	log.I("receiving coverage end...")
-	err = util.FWrite("coverage.json", cover)
-	if err != nil {
-		return hs.MsgResE(1, err.Error())
-	} else {
-		return hs.MsgRes("SUCCESS")
-	}
-}
+// func StoreCoverage(hs *routing.HTTPSession) routing.HResult {
+// 	var cover string = ""
+// 	err := hs.ValidRVal(`
+// 		cover,R|S,L:0
+// 		`, &cover)
+// 	if err != nil {
+// 		return hs.MsgResE(1, err.Error())
+// 	}
+// 	log.I("receiving coverage...")
+// 	time.Sleep(10 * time.Second)
+// 	log.I("receiving coverage end...")
+// 	err = util.FWrite("coverage.json", cover)
+// 	if err != nil {
+// 		return hs.MsgResE(1, err.Error())
+// 	} else {
+// 		return hs.MsgRes("SUCCESS")
+// 	}
+// }

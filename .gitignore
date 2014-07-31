@@ -7,10 +7,10 @@ go/main
 
 go/node_modules
 
-go/www/lib
-
 go/CTF-go.sublime-workspace
 
 go/pkg
 
 go/srv.test
+
+go/npm-debug.log

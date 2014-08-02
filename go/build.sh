@@ -15,6 +15,8 @@ export WS_B_DIR=$B_DIR/ws
 ######Install Dependence######
 echo "Installing Dependence"
 go get github.com/Centny/Cny4go
+# npm install git://github.com/Centny/istanbul.git
+# npm install git://github.com/Centny/grunt-srv.git
 ##############################
 #########Running Test#########
 rm -rf $B_DIR

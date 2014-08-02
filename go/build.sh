@@ -51,7 +51,7 @@ cp srv.test $WS_B_DIR/bin
 echo "Instrument Js And Web Page"
 cp -r www $WS_B_DIR
 istanbul instrument --prefix $PWD/www --output $WS_B_DIR/www -x lib/** -x test/** www
-jcr app -d www -o $WS_B_DIR/www -ex lib/.*,tpl/.*
+jcr app -d www -o $WS_B_DIR/www -ex www/lib/.*,tpl/.*
 
 ##############################
 ######## Run Grunt############

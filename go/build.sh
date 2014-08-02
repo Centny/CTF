@@ -81,6 +81,7 @@ cat $GO_B_DIR/coverage.json | gocov-html $GO_B_DIR/coverage.json > $GO_B_DIR/cov
 mkdir $JS_B_DIR/all
 cd www
 istanbul report --root=$JS_B_DIR --dir=$JS_B_DIR/all cobertura
+istanbul report --root=$JS_B_DIR --dir=$JS_B_DIR/all html
 cd ../
 
 mcobertura -o $B_DIR/coverage.xml $JS_B_DIR/all/cobertura-coverage.xml $GO_B_DIR/coverage.xml

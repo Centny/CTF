@@ -58,7 +58,7 @@ jcr app -d www -o $WS_B_DIR/www -ex www/lib/.*,tpl/.*
 echo "Running Web Testing"
 mkdir $JS_B_DIR/e2e
 mkdir $JS_B_DIR/uni
-npm install
+# npm install
 grunt --force
 
 ##############################

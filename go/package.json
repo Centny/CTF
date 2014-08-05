@@ -8,7 +8,7 @@
         "karma-chrome-launcher": "0.1.x",
         "karma-junit-reporter": "0.2.x",
         "karma-coverage": "0.2.x",
-        "karma-jasmine": "0.1.x"
+        "karma-jasmine": "0.1.x",
+        "grunt-srv": "0.1.x"
     }
 }
-

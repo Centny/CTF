@@ -1,6 +1,20 @@
 #!/bin/bash
 ##############################
 #####Setting Environments#####
+u_n=`uname`
+case $u_n in
+	MINGW*)
+		if [ $GOPATH != "" ];then
+			rp=$GOPATH
+			rp=${rp//\\/\/}
+			rp=${rp//:/}
+			rp=${rp//;/:}
+			echo "coverting GOPATH to $rp"
+			export GOPATH='$rp'
+		fi
+esac
+##############################
+#####Setting Environments#####
 echo "Setting Environments"
 set -e
 export PWD=`pwd`
@@ -58,7 +72,6 @@ jcr app -d www -o $WS_B_DIR/www -ex www/lib/.*,tpl/.*
 echo "Running Web Testing"
 mkdir $JS_B_DIR/e2e
 mkdir $JS_B_DIR/uni
-# npm install
 grunt --force
 
 ##############################

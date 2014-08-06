@@ -5,12 +5,7 @@ u_n=`uname`
 case $u_n in
 	MINGW*)
 		if [ $GOPATH != "" ];then
-			rp=$GOPATH
-			rp=${rp//\\/\/}
-			rp=${rp//:/}
-			rp=${rp//;/:}
-			echo "coverting GOPATH to $rp"
-			export GOPATH='$rp'
+			export GOPATH='pathc $GOPATH'
 		fi
 esac
 ##############################

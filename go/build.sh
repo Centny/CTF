@@ -1,15 +1,6 @@
 #!/bin/bash
 ##############################
 #####Setting Environments#####
-u_n=`uname`
-case $u_n in
-	MINGW*)
-		if [ $GOPATH != "" ];then
-			export GOPATH='pathc $GOPATH'
-		fi
-esac
-##############################
-#####Setting Environments#####
 echo "Setting Environments"
 set -e
 export PWD=`pwd`
@@ -20,6 +11,14 @@ export B_DIR=$PWD/build
 export GO_B_DIR=$B_DIR/go
 export JS_B_DIR=$B_DIR/js
 export WS_B_DIR=$B_DIR/ws
+export WDM="webdriver-manager"
+u_n=`uname`
+case $u_n in
+ MINGW*)
+  if [ $GOPATH != "" ];then
+   export GOPATH='pathc $GOPATH'
+  fi
+esac
 ##############################
 ######Install Dependence######
 echo "Installing Dependence"

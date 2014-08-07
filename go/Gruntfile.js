@@ -12,8 +12,7 @@ module.exports = function(grunt) {
           ctrlc: true,
           wait: 1000
         },
-        cmd: 'webdriver-manager',
-        args: ["start"]
+        cmd: 'webdriver-manager start'
       },
       igsrv: {
         options: {
@@ -24,8 +23,7 @@ module.exports = function(grunt) {
           },
           cwd: ws_b_dir
         },
-        cmd: 'bin/srv.test',
-        args: ["-test.v", "--test.coverprofile=../go/ig.out"]
+        cmd: 'bin/srv.test -test.v --test.coverprofile=../go/ig.out'
       },
       jcr: {
         options: {
@@ -35,8 +33,7 @@ module.exports = function(grunt) {
             grunt.SrvWebKill("http://localhost:5457/jcr/exit");
           }
         },
-        cmd: 'jcr',
-        args: ["start", "-o", js_b_idr + "/e2e"]
+        cmd: 'jcr start -o ' + js_b_idr + " /e2e"
       }
     },
     shell: {

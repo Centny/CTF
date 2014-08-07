@@ -16,7 +16,7 @@ u_n=`uname`
 case $u_n in
  MINGW*)
   if [ $GOPATH != "" ];then
-   export GOPATH='pathc $GOPATH'
+   export GOPATH=`pathc -w2p $GOPATH`
   fi
 esac
 ##############################

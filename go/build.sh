@@ -18,7 +18,6 @@ export B_DIR=$PWD/build
 export GO_B_DIR=$B_DIR/go
 export JS_B_DIR=$B_DIR/js
 export WS_B_DIR=$B_DIR/ws
-export WDM="webdriver-manager"
 ##############################
 ######Install Dependence######
 echo "Installing Dependence"
@@ -52,7 +51,7 @@ rm -f $GO_B_DIR/c.out
 echo "Build Executable"
 mkdir $WS_B_DIR/bin
 go test org.cny.ctf/srv -c -i -cover -coverpkg org.cny.ctf/ctf,org.cny.ctf/srv
-cp srv.test $WS_B_DIR/bin
+cp srv.test* $WS_B_DIR/bin
 
 ##############################
 ##Instrument Js And Web Page##

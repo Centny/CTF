@@ -3,6 +3,13 @@
 #####Setting Environments#####
 echo "Setting Environments"
 set -e
+u_n=`uname`
+case $u_n in
+ MINGW*)
+  if [ $GOPATH != "" ];then
+   export GOPATH=`pathc -w2p $GOPATH`
+  fi
+esac
 export PWD=`pwd`
 export LD_LIBRARY_PATH=/usr/local/lib
 export PATH=$PATH:$GOPATH/bin:$HOME/bin:$GOROOT/bin
@@ -12,13 +19,6 @@ export GO_B_DIR=$B_DIR/go
 export JS_B_DIR=$B_DIR/js
 export WS_B_DIR=$B_DIR/ws
 export WDM="webdriver-manager"
-u_n=`uname`
-case $u_n in
- MINGW*)
-  if [ $GOPATH != "" ];then
-   export GOPATH=`pathc -w2p $GOPATH`
-  fi
-esac
 ##############################
 ######Install Dependence######
 echo "Installing Dependence"

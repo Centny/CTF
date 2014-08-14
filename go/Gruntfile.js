@@ -26,6 +26,16 @@ module.exports = function(grunt) {
         ucmd: 'bin/srv.test -test.v --test.coverprofile=../go/ig.out',
         wcmd: '.\\bin\\srv.test.exe -test.v --test.coverprofile=..\\go\\ig.out'
       },
+      mnsrv: {
+        options: {
+          stdout: true,
+          wait: 2000,
+          kill: "SIGINT",
+          cwd: ws_b_dir
+        },
+        ucmd: 'bin/CTF',
+        wcmd: 'bin/CTF.exe'
+      },
       jcr: {
         options: {
           stdout: true,
@@ -34,7 +44,7 @@ module.exports = function(grunt) {
             grunt.SrvWebKill("http://localhost:5457/jcr/exit");
           }
         },
-        cmd: 'jcr start -o ' + js_b_idr + " /e2e"
+        cmd: 'jcr start -o ' + js_b_idr + "/e2e"
       }
     },
     shell: {
@@ -46,9 +56,12 @@ module.exports = function(grunt) {
       }
     }
   });
-  grunt.registerTask('duni', ['shell:uni']);
-  grunt.registerTask('de2e', ['shell:e2e']);
-  grunt.registerTask('dsrv', ['srv:wdm', 'srv:igsrv', 'srv:jcr']);
-  grunt.registerTask('e2e', ['dsrv', 'de2e', 'srv-stop']);
-  grunt.registerTask('default', ['duni', 'e2e']);
+  grunt.registerTask('r_uni', ['shell:uni']);
+  grunt.registerTask('r_e2e', ['shell:e2e']);
+  grunt.registerTask('r_srv', ['srv:wdm', 'srv:igsrv', 'srv:jcr']);
+  grunt.registerTask('d_srv', ['srv:wdm', 'srv:mnsrv', 'srv:jcr']);
+  grunt.registerTask('w_srv', ['srv:wdm', 'srv:mnsrv', 'srv:jcr', 'srv-wait']);
+  grunt.registerTask('g_e2e', ['r_srv', 'r_e2e', 'srv-stop']);
+  grunt.registerTask('d_e2e', ['d_srv', 'r_e2e', 'srv-stop']);
+  grunt.registerTask('default', ['r_uni', 'g_e2e']);
 };

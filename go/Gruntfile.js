@@ -24,7 +24,7 @@ module.exports = function(grunt) {
           cwd: ws_b_dir
         },
         ucmd: 'bin/srv.test -test.v --test.coverprofile=../go/ig.out',
-        wcmd: '.\\bin\\srv.test.exe -test.v --test.coverprofile=../go/ig.out'
+        wcmd: '.\\bin\\srv.test.exe -test.v --test.coverprofile=..\\go\\ig.out'
       },
       jcr: {
         options: {

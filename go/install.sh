@@ -1,10 +1,7 @@
-sudo npm install -g grunt
-sudo npm install -g grunt-cli
-sudo npm install -g karma-cli
-sudo npm install -g karma
-sudo npm install -g protractor
-sudo webdriver-manager update
-
-
-npm install git://github.com/Centny/istanbul.git
-npm install
+npm install -g grunt
+npm install -g grunt-cli
+npm install -g karma-cli
+npm install -g karma
+npm install -g protractor
+webdriver-manager update
+npm install -g git://github.com/Centny/istanbul.git

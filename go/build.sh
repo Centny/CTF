@@ -1,13 +1,23 @@
 #!/bin/bash
 ##############################
 #####Setting Environments#####
+pkgs="\
+ org.cny.ctf/ctf\
+"
+ig_cpkgs="org.cny.ctf/ctf,org.cny.ctf/srv"
+ig_pkg="org.cny.ctf/srv"
+ig_n="srv.test"
+main_n="CTF"
+main_pkg="org.cny.ctf/main"
 set -e
 u_n=`uname`
 case $u_n in
  MINGW*)
+  main_n="CTF.exe"
   if [ $GOPATH != "" ];then
    export GOPATH=`pathc -w2p $GOPATH`
   fi
+  ;;
 esac
 export PWD=`pwd`
 export LD_LIBRARY_PATH=/usr/local/lib
@@ -17,12 +27,6 @@ export B_DIR=$PWD/build
 export GO_B_DIR=$B_DIR/go
 export JS_B_DIR=$B_DIR/js
 export WS_B_DIR=$B_DIR/ws
-###
-pkgs="\
- org.cny.ctf/ctf\
-"
-ig_cpkgs="org.cny.ctf/ctf,org.cny.ctf/srv"
-ig_pkg="org.cny.ctf/srv"
 ###
 init_js(){
 	echo "Setting JS Environments"
@@ -60,12 +64,12 @@ unit_test(){
 ######## Build Exec ##########
 build_ig(){
 	echo "Build Executable"
-	go test  -c -i -cover -coverpkg $c_pkgs
-	cp srv.test* $WS_B_DIR/bin
+	go test $ig_pkg  -c -i -cover -coverpkg $ig_cpkgs
+	cp $ig_n* $WS_B_DIR/bin
 }
 build_main(){
 	echo "Build Main"
-	go build -o CTF org.cny.ctf/main
+	go build -o $main_n $main_pkg
 }
 ##############################
 ##Instrument Js And Web Page##
@@ -114,9 +118,17 @@ case $1 in
   init
   build_main
  ;;
+ "pub")
+  build_main
+  ftp -u ftp://192.168.1.14/cmd/ $main_n
+ ;;
+ "update")
+  rm -f $main_n
+  ftp -g ftp://192.168.1.14/cmd/$main_n $main_n
+ ;;
  "rsrv")
   init
-  cp CTF* $WS_B_DIR/bin
+  cp $main_n* $WS_B_DIR/bin
   grunt w_srv
  ;;
  "re2e")

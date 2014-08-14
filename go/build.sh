@@ -10,10 +10,12 @@ ig_n="srv.test"
 main_n="CTF"
 main_pkg="org.cny.ctf/main"
 set -e
+ftp_arg="-a"
 u_n=`uname`
 case $u_n in
  MINGW*)
   main_n="CTF.exe"
+  ftp_arg="-A"
   if [ $GOPATH != "" ];then
    export GOPATH=`pathc -w2p $GOPATH`
   fi
@@ -120,11 +122,19 @@ case $1 in
  ;;
  "pub")
   build_main
-  ftp -u ftp://192.168.1.14/cmd/ $main_n
+  ftp $ftp_arg 192.168.1.14 <<EOF
+  cd cmd
+  binary
+  put $main_n
+EOF
  ;;
  "update")
   rm -f $main_n
-  ftp -g ftp://192.168.1.14/cmd/$main_n $main_n
+  ftp $ftp_arg 192.168.1.14 <<EOF
+  cd cmd
+  binary
+  get $main_n
+EOF
  ;;
  "rsrv")
   init

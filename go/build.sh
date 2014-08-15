@@ -170,6 +170,7 @@ case $1 in
   init
   unit_test
   build_ig
+  build_main
   instrument
   web_test
   gocov_repo

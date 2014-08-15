@@ -115,6 +115,21 @@ js_repo(){
 m_repo(){
 	mcobertura -o $B_DIR/coverage.xml $JS_B_DIR/all/cobertura-coverage.xml $GO_B_DIR/coverage.xml
 }
+pub(){
+  ftp $ftp_arg 192.168.1.14 <<EOF
+  cd cmd
+  binary
+  put $main_n
+EOF
+}
+dload(){
+  ftp $ftp_arg 192.168.1.14 <<EOF
+  cd cmd
+  binary
+  get $main_n
+EOF
+}
+
 case $1 in
  "main")
   init
@@ -122,19 +137,11 @@ case $1 in
  ;;
  "pub")
   build_main
-  ftp $ftp_arg 192.168.1.14 <<EOF
-  cd cmd
-  binary
-  put $main_n
-EOF
+  pub
  ;;
  "update")
   rm -f $main_n
-  ftp $ftp_arg 192.168.1.14 <<EOF
-  cd cmd
-  binary
-  get $main_n
-EOF
+  dload
  ;;
  "rsrv")
   init
@@ -168,6 +175,7 @@ EOF
   gocov_repo
   js_repo
   m_repo
+  pub
   ;;
  *)
   echo "Usage: ./build.sh cmd
@@ -176,6 +184,8 @@ EOF
   re2e	run e2e test by manual(only e2e)
   runi	run unit test
   de2e	run e2e test(auto start test server)
+  pub	publish the executable
+  update download the new version executable
   all	run all"
   ;;
 esac

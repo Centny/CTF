@@ -63,5 +63,6 @@ module.exports = function(grunt) {
   grunt.registerTask('w_srv', ['srv:wdm', 'srv:mnsrv', 'srv:jcr', 'srv-wait']);
   grunt.registerTask('g_e2e', ['r_srv', 'r_e2e', 'srv-stop']);
   grunt.registerTask('d_e2e', ['d_srv', 'r_e2e', 'srv-stop']);
+  grunt.registerTask('d_web', ['r_uni', 'd_e2e']);
   grunt.registerTask('default', ['r_uni', 'g_e2e']);
 };

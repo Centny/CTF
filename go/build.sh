@@ -159,11 +159,11 @@ case $1 in
   grunt r_uni
   js_repo
  ;;
- "de2e")
+ "dweb")
   init
   cp CTF* $WS_B_DIR/bin
   instrument
-  grunt d_e2e
+  grunt d_web
   js_repo
  ;;
  "all")
@@ -176,7 +176,6 @@ case $1 in
   gocov_repo
   js_repo
   m_repo
-  pub
   ;;
  *)
   echo "Usage: ./build.sh cmd

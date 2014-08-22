@@ -7,7 +7,8 @@ describe("Unit: Testing Controllers", function() {
   });
 
   it('should have a BookCtrl controller', function() {
-    expect(CTF.BookCtrl).not.toBe(1);
+    expect(true).toBe(false);
+    //expect(CTF.BookCtrl).not.toBe(1);
   });
 
   it('should have a properly working MainCtrl controller', inject(function($rootScope, $controller, $httpBackend) {

@@ -183,7 +183,7 @@ case $1 in
   rsrv	run all server
   re2e	run e2e test by manual(only e2e)
   runi	run unit test
-  de2e	run e2e test(auto start test server)
+  dweb	run all web test(auto start test server)
   pub	publish the executable
   update download the new version executable
   all	run all"

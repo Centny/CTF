@@ -68,6 +68,7 @@ build_ig(){
 	echo "Build Executable"
 	go test $ig_pkg  -c -i -cover -coverpkg $ig_cpkgs
 	cp $ig_n* $WS_B_DIR/bin
+  cp -r conf $WS_B_DIR
 }
 build_main(){
 	echo "Build Main"
@@ -90,13 +91,16 @@ web_test(){
 
 ##############################
 #####Create Coverage Report###
+gocov_unit(){
+  gocov convert $GO_B_DIR/a.out > $GO_B_DIR/coverage_a.json
+  cat $GO_B_DIR/coverage_a.json | gocov-xml -b $PWD/src > $GO_B_DIR/coverage_a.xml
+  cat $GO_B_DIR/coverage_a.json | gocov-html $GO_B_DIR/coverage_a.json > $GO_B_DIR/coverage_a.html
+}
 gocov_repo(){
 	echo "Create Coverage Report"
 	mrepo $GO_B_DIR/all.out $GO_B_DIR/a.out $GO_B_DIR/ig.out
 
-	gocov convert $GO_B_DIR/a.out > $GO_B_DIR/coverage_a.json
-	cat $GO_B_DIR/coverage_a.json | gocov-xml -b $PWD/src > $GO_B_DIR/coverage_a.xml
-	cat $GO_B_DIR/coverage_a.json | gocov-html $GO_B_DIR/coverage_a.json > $GO_B_DIR/coverage_a.html
+  gocov_unit
 
 	gocov convert $GO_B_DIR/ig.out > $GO_B_DIR/coverage_ig.json
 	cat $GO_B_DIR/coverage_ig.json | gocov-xml -b $PWD/src > $GO_B_DIR/coverage_ig.xml
@@ -145,7 +149,7 @@ case $1 in
  ;;
  "rsrv")
   init
-  cp $main_n* $WS_B_DIR/bin
+  cp $main_n $WS_B_DIR/bin
   grunt w_srv
  ;;
  "re2e")
@@ -159,9 +163,19 @@ case $1 in
   grunt r_uni
   js_repo
  ;;
+ "wuni")
+  init_js
+  grunt r_uni
+  js_repo
+ ;;
+ "guni")
+  init
+  unit_test
+  gocov_unit
+ ;;
  "dweb")
   init
-  cp CTF* $WS_B_DIR/bin
+  cp $main_n $WS_B_DIR/bin
   instrument
   grunt d_web
   js_repo
@@ -182,7 +196,8 @@ case $1 in
   main	build main
   rsrv	run all server
   re2e	run e2e test by manual(only e2e)
-  runi	run unit test
+  wuni	run web unit test
+  guni  run go unit test
   dweb	run all web test(auto start test server)
   pub	publish the executable
   update download the new version executable

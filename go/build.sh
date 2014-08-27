@@ -139,6 +139,10 @@ case $1 in
   init
   build_main
  ;;
+ "igr")
+  init
+  build_ig
+ ;;
  "pub")
   build_main
   pub
@@ -194,6 +198,7 @@ case $1 in
  *)
   echo "Usage: ./build.sh cmd
   main	build main
+  igr  build igr
   rsrv	run all server
   re2e	run e2e test by manual(only e2e)
   wuni	run web unit test

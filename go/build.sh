@@ -96,15 +96,18 @@ gocov_unit(){
   cat $GO_B_DIR/coverage_a.json | gocov-xml -b $PWD/src > $GO_B_DIR/coverage_a.xml
   cat $GO_B_DIR/coverage_a.json | gocov-html $GO_B_DIR/coverage_a.json > $GO_B_DIR/coverage_a.html
 }
+gocov_ig(){
+  gocov convert $GO_B_DIR/ig.out > $GO_B_DIR/coverage_ig.json
+  cat $GO_B_DIR/coverage_ig.json | gocov-xml -b $PWD/src > $GO_B_DIR/coverage_ig.xml
+  cat $GO_B_DIR/coverage_ig.json | gocov-html $GO_B_DIR/coverage_ig.json > $GO_B_DIR/coverage_ig.html
+}
 gocov_repo(){
 	echo "Create Coverage Report"
 	mrepo $GO_B_DIR/all.out $GO_B_DIR/a.out $GO_B_DIR/ig.out
 
   gocov_unit
 
-	gocov convert $GO_B_DIR/ig.out > $GO_B_DIR/coverage_ig.json
-	cat $GO_B_DIR/coverage_ig.json | gocov-xml -b $PWD/src > $GO_B_DIR/coverage_ig.xml
-	cat $GO_B_DIR/coverage_ig.json | gocov-html $GO_B_DIR/coverage_ig.json > $GO_B_DIR/coverage_ig.html
+  gocov_ig
 
 	gocov convert $GO_B_DIR/all.out > $GO_B_DIR/coverage.json
 	cat $GO_B_DIR/coverage.json | gocov-xml -b $PWD/src > $GO_B_DIR/coverage.xml
@@ -184,6 +187,15 @@ case $1 in
   grunt d_web
   js_repo
  ;;
+ "ig")
+  init
+  build_ig
+  build_main
+  instrument
+  web_test
+  grunt --force g_e2e
+  js_repo
+  ;;
  "all")
   init
   unit_test

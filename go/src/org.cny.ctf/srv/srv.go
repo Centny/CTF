@@ -2,8 +2,8 @@ package srv
 
 import (
 	"fmt"
-	"github.com/Centny/Cny4go/log"
-	"github.com/Centny/Cny4go/routing"
+	"github.com/Centny/gwf/log"
+	"github.com/Centny/gwf/routing"
 	"net/http"
 	"org.cny.ctf/ctf"
 	"sync"

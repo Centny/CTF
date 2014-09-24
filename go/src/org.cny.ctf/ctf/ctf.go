@@ -2,7 +2,7 @@ package ctf
 
 import (
 	"fmt"
-	"github.com/Centny/Cny4go/routing"
+	"github.com/Centny/gwf/routing"
 )
 
 type Item struct {
